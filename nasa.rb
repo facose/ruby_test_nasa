@@ -22,6 +22,8 @@ def build_web_page(nasa_hash)#=> here goes a hash returned from the request meth
             key.puts "<head>"
             key.puts "<title>NASA | Curiosity</title>"
             key.puts "<link rel='stylesheet' href='style.css'>"
+            key.puts "<meta name='author' content='Fabian Conejo Segura'>"
+            key.puts "<link rel='shortcut icon' href='nasa_favicon.png' type='image/x-icon'>"
             key.puts "</head>"
             key.puts "<body>"
             key.puts "<header>"
