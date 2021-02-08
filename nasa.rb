@@ -41,12 +41,36 @@ def build_web_page(nasa_hash)#=> here goes a hash returned from the request meth
             key.puts "</body>"
             key.puts "</html>"
         end    
-    end   
+    end
 end
  
-#def  photos_count()
+def photos_count(nasa_hash)
+    
+    nasa_hash.each do |hash|
+        photos = hash[1]
+        photo_count_arry = []
 
-#end
+        for i in (0...photos.count) do 
+            photo_count_arry.push(photos[i]["camera"]["full_name"])
+        end 
+
+        cameras = Hash.new(0)    
+        photo_count_arry.each do |photo|
+            cameras[photo] += 1
+        end
+
+=begin ** uncomment this block of code to have a more user friendly message in the terminal console**         
+        cameras.each do |camera, photo|  
+            puts "la cámara #{camera} realizó #{photo} fotografías"
+        end  
+=end
+
+        return cameras
+
+    end
+end
 
 nasa_request = request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1", "pofO238yhgKQk0AxaSjYiBHCOQYuV51ax7AfSmwT")
+
 build_web_page(nasa_request)
+print photos_count(nasa_request)
